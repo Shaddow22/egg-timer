@@ -38,6 +38,7 @@
         }
 
         .time-button {
+            position: relative;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
@@ -51,7 +52,19 @@
         }
 
         .time-button.active {
-            background-color: #0056b3;
+            background-color: #28a745; /* Grüner Hintergrund für den aktiven Button */
+            color: white;
+            border: 2px solid #28a745; /* Optional: grüner Rand für den aktiven Button */
+        }
+
+        .time-button.active::after {
+            content: '✔'; /* Unicode für den Haken */
+            color: white; /* Farbe des Hakens */
+            font-size: 1.2em; /* Größe des Hakens */
+            position: absolute;
+            right: 10px; /* Abstand vom rechten Rand */
+            top: 50%; /* Vertikale Zentrierung */
+            transform: translateY(-50%); /* Zentrierung korrigieren */
         }
 
         .time-button:hover {
@@ -130,7 +143,7 @@
         let isPaused = false;
         let selectedTime = null;
         let audio = document.getElementById('audio');
-        let soundStarted = false; // Neue Variable zur Überprüfung, ob der Ton bereits gestartet wurde
+        let soundStarted = false; // Variable zur Überprüfung, ob der Ton bereits gestartet wurde
 
         function initAudio() {
             // Versuche, das Audio-Element abzuspielen, um iOS zu "aktivieren"

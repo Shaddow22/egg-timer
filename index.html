@@ -108,9 +108,9 @@
         
         <!-- Auswahl der Garstufen -->
         <div class="button-group">
-            <button class="time-button" id="softButton" onclick="setTime('soft')">Weich-gekocht (4 Min)</button><br>
-            <button class="time-button" id="mediumButton" onclick="setTime('medium')">Mittel-gekocht (7 Min)</button><br>
-            <button class="time-button" id="hardButton" onclick="setTime('hard')">Hart-gekocht (10 Min)</button>
+            <button class="time-button" id="softButton" onclick="setTime('soft')">Weich-gekocht (5 Min)</button><br>
+            <button class="time-button" id="mediumButton" onclick="setTime('medium')">Mittel-gekocht (8 Min)</button><br>
+            <button class="time-button" id="hardButton" onclick="setTime('hard')">Hart-gekocht (12 Min)</button>
         </div>
         
         <button class="start-button" onclick="startTimer()">Starten</button>
@@ -144,13 +144,13 @@
 
             // Setzen der Zeit basierend auf dem ausgewählten Button
             if (type === 'soft') {
-                secondsRemaining = 0.05 * 60;
+                secondsRemaining = 5 * 60;
                 document.getElementById('softButton').classList.add('active');
             } else if (type === 'medium') {
-                secondsRemaining = 7 * 60;
+                secondsRemaining = 8 * 60;
                 document.getElementById('mediumButton').classList.add('active');
             } else if (type === 'hard') {
-                secondsRemaining = 10 * 60;
+                secondsRemaining = 12 * 60;
                 document.getElementById('hardButton').classList.add('active');
             }
             document.getElementById('timerDisplay').textContent = formatTime(secondsRemaining);

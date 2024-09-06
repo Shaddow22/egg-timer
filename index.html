@@ -130,13 +130,21 @@
         let selectedTime = null;
         let audio = document.getElementById('audio');
 
+        // Funktion zur Initialisierung des Audio-Elements
+        function initAudio() {
+            // Versuche, das Audio-Element abzuspielen, um iOS zu "aktivieren"
+            audio.play().catch(error => {
+                console.error('Fehler beim Laden des Audios:', error);
+            });
+        }
+
         function setTime(type) {
             // Rücksetzung der aktiven Klasse von allen Buttons
             document.querySelectorAll('.time-button').forEach(button => button.classList.remove('active'));
 
             // Setzen der Zeit basierend auf dem ausgewählten Button
             if (type === 'soft') {
-                secondsRemaining = 0.05 * 60;
+                secondsRemaining = 0.1 * 60;
                 document.getElementById('softButton').classList.add('active');
             } else if (type === 'medium') {
                 secondsRemaining = 7 * 60;
@@ -241,6 +249,9 @@
             const sec = seconds % 60;
             return `${String(minutes).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
         }
+
+        // Initialisiere das Audio-Element bei einem Benutzerinteraktions-Ereignis, um iOS zu erlauben, das Audio abzuspielen
+        document.body.addEventListener('click', initAudio);
     </script>
 </body>
 </html>

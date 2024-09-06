@@ -129,6 +129,14 @@
         let isPaused = false;
         let selectedTime = null;
         let audio = document.getElementById('audio');
+        let soundStarted = false; // Neue Variable zur Überprüfung, ob der Ton bereits gestartet wurde
+
+        function initAudio() {
+            // Versuche, das Audio-Element abzuspielen, um iOS zu "aktivieren"
+            audio.play().catch(error => {
+                console.error('Fehler beim Laden des Audios:', error);
+            });
+        }
 
         function setTime(type) {
             // Rücksetzung der aktiven Klasse von allen Buttons
@@ -136,7 +144,7 @@
 
             // Setzen der Zeit basierend auf dem ausgewählten Button
             if (type === 'soft') {
-                secondsRemaining = 0.1 * 60;
+                secondsRemaining = 4 * 60;
                 document.getElementById('softButton').classList.add('active');
             } else if (type === 'medium') {
                 secondsRemaining = 7 * 60;
@@ -150,6 +158,12 @@
 
             // Setze das Bild zurück auf egg.png, wenn der Timer neu gestartet wird
             document.getElementById('eggImage').src = 'egg.png';
+
+            // Initialisiere das Audio-Element bei einer Benutzerinteraktion
+            if (!soundStarted) {
+                initAudio();
+                soundStarted = true;
+            }
         }
 
         function startTimer() {

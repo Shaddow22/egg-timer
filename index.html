@@ -118,6 +118,9 @@
         <button class="start-button" onclick="resetTimer()">Zurücksetzen</button>
         <div id="timerDisplay">00:00</div><br>
         <button class="stop-button" id="stopButton" onclick="stopSound()">Stop</button>
+
+        <!-- Audio Element -->
+        <audio id="audio" src="alarm.mp3" preload="auto"></audio>
     </div>
     <script>
         let timer;
@@ -125,7 +128,7 @@
         let secondsRemaining = 0;
         let isPaused = false;
         let selectedTime = null;
-        let audio = new Audio('alarm.mp3'); // Pfad zur Audio-Datei
+        let audio = document.getElementById('audio');
 
         function setTime(type) {
             // Rücksetzung der aktiven Klasse von allen Buttons
@@ -211,7 +214,9 @@
 
             // Alle 3 Sekunden den Ton abspielen
             soundInterval = setInterval(() => {
-                audio.play();
+                audio.play().catch(error => {
+                    console.error('Fehler beim Abspielen des Sounds:', error);
+                });
             }, 3000);
         }
 
